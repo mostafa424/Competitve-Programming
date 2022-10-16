@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int firstBadVersion(int n) {
+        int l=1,r=n;
+        int min=-1;
+        while(r>=l){
+            int mid=l+(r-l)/2;
+            bool target=isBadVersion(mid);
+            if(target==true){
+                min=mid;
+                r=mid-1;
+            }
+            else{
+                l=mid+1;    
+            }  
+        }
+        return min;
+    }
+};
