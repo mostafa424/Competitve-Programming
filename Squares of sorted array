@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+       int r=0;int l=0;
+        while(r<nums.size()-1 && nums[r]<0){r++;}
+        l=r-1;
+        vector<int>res(nums.size(),0);
+        int ctr=0;
+        while(l>=0 && r<nums.size()){
+            int l_square = nums[l]*nums[l];
+            int r_square = nums[r]*nums[r];
+            if(l_square>r_square){
+                res[ctr++]=r_square;
+                r++;
+            }
+            else{
+                res[ctr++]=l_square;
+                l--;
+            }
+        }
+        while(r<nums.size()){
+            int r_square = nums[r]*nums[r];
+                res[ctr++]=r_square;
+                r++;
+            }
+        while(l>=0){
+            int l_square = nums[l]*nums[l];
+                res[ctr++]=l_square;
+                l--;
+            } 
+    return res;
+    }
+};
