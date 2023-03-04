@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int maxLength(vector<string>& arr) {
+       string res="";
+       int sol=0;
+       for(int i=0;i<arr.size();i++){
+           sol = max(sol,backTrack(i,res,arr)); 
+       }
+       return sol;
+    }
+    int backTrack(int i , string res,
+    vector<string> arr){
+        if(i == arr.size()){
+            return res.length();
+        }
+        // pick
+        int pick = res.length();
+        if(!overlap(res,arr[i])){
+            pick =  backTrack(i+1,res+arr[i],arr);
+        }
+        return max(pick, backTrack(i+1,res,arr));
+    }
+    bool overlap(string s1,string s2){
+        string s=s1+s2;
+        for(int i=0;i<s.length()-1;i++){
+            for(int j=i+1;j<s.length();j++){
+                if(s[j]==s[i]){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
